@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2015 19:54:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes_Terceiros.Servicos" table="servicos" catalog="bd" optimistic-lock="version">
+        <id name="codservico" type="java.lang.Integer">
+            <column name="CODSERVICO" />
+            <generator class="identity" />
+        </id>
+        <property name="nomeServico" type="string">
+            <column name="NOME_SERVICO" length="100" not-null="true" />
+        </property>
+        <set name="clientePrestadors" table="cliente_prestador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODSERVICO" />
+            </key>
+            <one-to-many class="Classes_Terceiros.ClientePrestador" />
+        </set>
+        <one-to-one name="agendamento" class="Classes_Terceiros.Agendamento"></one-to-one>
+    </class>
+</hibernate-mapping>

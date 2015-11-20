@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2015 19:54:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes_Terceiros.ClientePrestador" table="cliente_prestador" catalog="bd" optimistic-lock="version">
+        <id name="codclipre" type="java.lang.Integer">
+            <column name="CODCLIPRE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="servicos" class="Classes_Terceiros.Servicos" fetch="select">
+            <column name="CODSERVICO" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="NOME" length="100" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="100" not-null="true" />
+        </property>
+        <property name="tel" type="string">
+            <column name="TEL" length="20" not-null="true" />
+        </property>
+        <property name="profissao" type="string">
+            <column name="PROFISSAO" length="100" />
+        </property>
+        <property name="nomeservico" type="string">
+            <column name="NOMESERVICO" length="100" />
+        </property>
+        <property name="senha" type="string">
+            <column name="SENHA" length="50" not-null="true" />
+        </property>
+        <property name="imagem" type="binary">
+            <column name="IMAGEM" />
+        </property>
+        <property name="endereco" type="string">
+            <column name="ENDERECO" length="100" not-null="true" />
+        </property>
+        <set name="agendamentos" table="agendamento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODCLIPRE" not-null="true" />
+            </key>
+            <one-to-many class="Classes_Terceiros.Agendamento" />
+        </set>
+    </class>
+</hibernate-mapping>
